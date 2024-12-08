@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plateforme de Recrutement</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #2d2f36;
+        padding: 15px 50px;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #ddd !important;
+        font-weight: 500;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: #ffffff !important;
+      }
+
+      .hero {
+        background-color: #36454f;
+        color: #ffffff;
+        padding: 100px 0;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin: 20px 0;
+      }
+
+      .hero .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 10px 30px;
+        font-size: 1rem;
+        border-radius: 25px;
+      }
+
+      .hero .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      .search-bar {
+        margin-top: -30px;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+      }
+
+      .search-bar input,
+      .search-bar select {
+        border-radius: 20px;
+      }
+
+      .search-bar button {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 20px;
+      }
+
+      .search-bar button:hover {
+        background-color: #0056b3;
+      }
+
+      .info-section {
+        padding: 50px 0;
+        text-align: center;
+      }
+
+      .info-section h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .info-section p {
+        font-size: 1.1rem;
+        color: #6c757d;
+      }
+
+      .cv-section {
+        padding: 50px 0;
+        background-color: #e9ecef;
+        text-align: center;
+      }
+
+      .cv-section h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .cv-section p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .cv-section .btn {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 25px;
+      }
+
+      .cv-section .btn:hover {
+        background-color: #0056b3;
+      }
+
+      footer {
+        background-color: #2d2f36;
+        color: #ffffff;
+        text-align: center;
+        padding: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="/">Plateforme de Recrutement</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+          {% if user.is_logged_in %}
+            <li class="nav-item"><a class="nav-link" href="/profile">Profil</a></li>
+            {% if user.role == "candidate" %}
+              <li class="nav-item"><a class="nav-link" href="/candidate-dashboard">Tableau de Bord Candidat</a></li>
+            {% elif user.role == "admin" %}
+              <li class="nav-item"><a class="nav-link" href="/admin-dashboard">Tableau de Bord Admin</a></li>
+            {% endif %}
+            <li class="nav-item"><a class="nav-link" href="/logout">Déconnexion</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="/login">Connexion</a></li>
+            <li class="nav-item"><a class="nav-link" href="/signup">Inscription</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>Devenez le cadre que vous voulez être</h1>
+      <p>
+        Recherchez parmi des milliers d'offres d'emploi adaptées à vos besoins.
+      </p>
+      <a href="#" class="btn btn-primary">Découvrir nos offres</a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="container search-bar mt-5">
+      <form class="row g-3">
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Métier, secteur, mots-clés"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ville, département, région"
+          />
+        </div>
+        <div class="col-md-3">
+          <select class="form-select">
+            <option selected>Type de contrat</option>
+            <option>CDI</option>
+            <option>CDD</option>
+            <option>Stage</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary w-100">
+            Rechercher
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- CV Section -->
+    <div class="cv-section">
+      <h2>Pas de CV à portée de main ?</h2>
+      <p>
+        Créez ou mettez à jour votre CV facilement avec notre outil gratuit.
+      </p>
+      <a href="#" class="btn btn-primary">Déposer votre CV</a>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+      <h2>Toutes les offres à pourvoir en Canada</h2>
+      <p>
+        Explorez notre large sélection d'offres d'emploi dans tous les secteurs.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Plateforme de Recrutement. Tous droits réservés.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+databases
+bcrypt
+pydantic
+jinja2
+asyncpg
+python-dotenv
+aiohttp

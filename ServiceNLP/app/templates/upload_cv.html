@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse des compétences</title>
+    <style>
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .message {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Déposer votre CV</h1>
+    <form action="/upload_cv" method="post" enctype="multipart/form-data">
+        <label for="file">Choisir un fichier :</label>
+        <input type="file" name="file" id="file" required>
+        <button type="submit">Soumettre</button>
+    </form>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+
+    {% if skills %}
+        <h2>Compétences détectées :</h2>
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>Aucune compétence détectée.</h2>
+    {% endif %}
+</body>
+</html>

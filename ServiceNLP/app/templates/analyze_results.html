@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse des Offres</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analyse des Offres</h1>
+    <ul>
+        {% for offer in analysis %}
+        <li>
+            <strong>Poste : {{ offer['job_title'] }}</strong><br>
+            <strong>Entreprise :</strong> {{ offer['company'] }}<br>
+            <strong>Compétences clés :</strong>
+            {% if offer['skills'] %}
+                {{ offer['skills'] | join(', ') }}
+            {% else %}
+                Aucune compétence détectée
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

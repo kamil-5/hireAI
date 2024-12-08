@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+jinja2
+spacy
+pandas
+numpy
+sqlalchemy
+python-dotenv
+aiofiles  # Pour gérer les téléchargements de fichiers
+snowflake-connector-python  # Pour la connexion à Snowflake
+snowflake-sqlalchemy  # Pour l'intégration SQLAlchemy avec Snowflake
+gunicorn  # Pour le déploiement
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0.tar.gz  # Modèle spaCy
